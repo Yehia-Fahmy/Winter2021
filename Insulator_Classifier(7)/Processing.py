@@ -10,7 +10,7 @@ from sys import getsizeof
 
 
 def load_data():
-    print("Loading data...")
+    print('Loading data...')
     train_data = []     # list to hold the training data
     test_data = []      # list to hold the testing data
     err = 0             # variable to keep track of any missed images
@@ -33,7 +33,7 @@ def load_data():
 
 
 def crop_data(data):
-    print("Cropping data...")
+    print('Cropping data...')
     err = 0             # variable to keep track of any missed images
     new_data = []       # list to hold the data
     try:
@@ -48,7 +48,7 @@ def crop_data(data):
 
 
 def flip_data(data):
-    print("Flipping data...")
+    print('Flipping data...')
     new_data = []       # list to hold the data
     err = 0             # variable to keep track of any missed images
     try:
@@ -63,7 +63,7 @@ def flip_data(data):
 
 
 def rotate_data(data):
-    print("Rotating data...")
+    print('Rotating data...')
     new_data = []  # list to hold the data
     err = 0  # variable to keep track of any missed images
     try:
@@ -78,13 +78,13 @@ def rotate_data(data):
 
 
 def shuffle_data(data):
-    print("Shuffling data...")
+    print('Shuffling data...')
     random.shuffle(data)        # randomly shuffling data
     return data
 
 
 def split_data(data):
-    print("Splitting data...")
+    print('Splitting data...')
     X = []  # list of images
     y = []  # list of labels
 
@@ -96,7 +96,7 @@ def split_data(data):
 
 
 def normalize_data(X_train, y_train, X_test, y_test):
-    print("Normalizing data...")
+    print('Normalizing data...')
     X_train = np.array(X_train)
     y_train = np.array(y_train)         # ensuring the lists are numpy arrays
     y_train = to_categorical(y_train)
@@ -116,61 +116,61 @@ def print_sizes(data):
 
 
 def save_data(X_train, y_train, X_test, y_test):
-    print(f"Saving X_test data...")
-    pickle_out = open("X_test.pickle", "wb")
+    print(f'Saving X_test data...')
+    pickle_out = open('X_test.pickle', 'wb')
     pickle.dump(X_test, pickle_out)
     pickle_out.close()
 
-    print(f"Saving y_train data...")
-    pickle_out = open("y_train.pickle", "wb")
+    print(f'Saving y_train data...')
+    pickle_out = open('y_train.pickle', 'wb')
     pickle.dump(y_train, pickle_out)
     pickle_out.close()
 
-    print(f"Saving y_test data...")
-    pickle_out = open("y_test.pickle", "wb")
+    print(f'Saving y_test data...')
+    pickle_out = open('y_test.pickle', 'wb')
     pickle.dump(y_test, pickle_out)
     pickle_out.close()
 
-    print(f"Saving X_train data...")
-    pickle_out = open("X_train.pickle", "wb")
+    print(f'Saving X_train data...')
+    pickle_out = open('X_train.pickle', 'wb')
     pickle.dump(X_train, pickle_out)
     pickle_out.close()
     dim = round(X_train.shape[0]/3)
     for i in range(3):
         print(f'Saving X_train({i}) data...')
-        pickle_out = open(f"X_train({i}).pickle", "wb")
+        pickle_out = open(f'X_train({i}).pickle', 'wb')
         pickle.dump(X_train[(i * dim):((i+1) * dim)], pickle_out)
         pickle_out.close()
 
 
 def print_img(data, index):
-    print(f"classification = {data[index][1]}")
+    print(f'classification = {data[index][1]}')
     plt.imshow(data[index][0], cmap='gray')
     plt.show()
 
 
-DATADIR = "/Users/Yehia/Desktop/Enhanced_Pictures(7)"  # directory of all the pictures
-CATAGORIES = ["One", "Two", "Three", "Four", "Five", "Six", "Seven"]
+DATADIR = '/Users/Yehia/Desktop/Enhanced_Pictures(7)'  # directory of all the pictures
+CATAGORIES = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven']
 IMG_SIZE = 480  # size of the images we will import
 NEW_SIZE = 120  # size of images after resizing
 
 start_time = t.time()
-print("Starting...")
+print('Starting...')
 
 train_data, test_data = load_data()
-print(f"{len(train_data)} training examples, {len(test_data)} testing examples")
+print(f'{len(train_data)} training examples, {len(test_data)} testing examples')
 
 train_data = crop_data(train_data)
 test_data = crop_data(test_data)
-print(f"{len(train_data)} training examples, {len(test_data)} testing examples")
+print(f'{len(train_data)} training examples, {len(test_data)} testing examples')
 
 train_data = flip_data(train_data)
 test_data = flip_data(test_data)
-print(f"{len(train_data)} training examples, {len(test_data)} testing examples")
+print(f'{len(train_data)} training examples, {len(test_data)} testing examples')
 
 train_data = rotate_data(train_data)
 test_data = rotate_data(test_data)
-print(f"{len(train_data)} training examples, {len(test_data)} testing examples")
+print(f'{len(train_data)} training examples, {len(test_data)} testing examples')
 
 train_data = shuffle_data(train_data)
 test_data = shuffle_data(test_data)
@@ -184,5 +184,5 @@ save_data(X_train, y_train, X_test, y_test)
 
 total_time = t.time() - start_time
 total_time = round(total_time, 2)
-print(f"{len(train_data)} training examples, {len(test_data)} testing examples")
-print("Finished in: ", total_time, "s!")
+print(f'{len(train_data)} training examples, {len(test_data)} testing examples')
+print('Finished in: ', total_time, 's!')
